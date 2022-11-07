@@ -1,6 +1,6 @@
 <div style="flex-display: column;">
 
-  <h2 style="text-align: center;">New game</h2>
+  <h1 style="text-align: center;">New game</h1>
   <ul style="display: flex;">
 
   <% @letters.each do |letter|%>
@@ -8,4 +8,13 @@
     <% end %>
 
   </ul>
+  <div class="container">
+    <form action="/score" method="post" data-turbo="false">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <input type="text" placeholder="type a word..." name="word">
+      <input id="tiles" name="tiles" type="hidden" value="<%= @letters %>">
+      <%= hidden_field_tag :tiles, @letters %>
+      <input type="submit" class='btn-purple' value="GO!">
+    </form>
+  </div>
 </div>
